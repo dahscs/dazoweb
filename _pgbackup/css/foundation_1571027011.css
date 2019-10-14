@@ -5844,7 +5844,7 @@ th,
 td {
     margin: 0;
     padding: 1em;
-    align-self: center;
+    align-content: space-around;
 }
 
 /* Default Link Styles */

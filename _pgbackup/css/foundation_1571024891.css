@@ -3512,7 +3512,7 @@ meta.foundation-mq-topbar {
 
 .button-group {
     list-style: none;
-    margin: 2vw 0vw 0vw 2vw;
+    margin: 0;
     left: 0;
 }
 
@@ -5843,8 +5843,7 @@ blockquote,
 th,
 td {
     margin: 0;
-    padding: 1em;
-    align-self: center;
+    padding: 0;
 }
 
 /* Default Link Styles */
