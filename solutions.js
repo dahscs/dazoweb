@@ -10,7 +10,7 @@ function loadXML(callback) {
 			} 
 		};
 	xobj.open("GET", 
-	"competitive_programming_problems/problems.xml", true); // Replace 'my_data' with the path to your file
+	"dazoweb/competitive_programming_problems/problems.xml", true); // Replace 'my_data' with the path to your file
 	xobj.setRequestHeader("Access-Control-Allow-Origin","*");
 	xobj.send(null);  
 };
