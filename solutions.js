@@ -10,7 +10,7 @@ function loadXML(callback) {
 			} 
 		};
 	xobj.open("GET", 
-	"dazoweb/competitive_programming_problems/problems.xml", true); // Replace 'my_data' with the path to your file
+	"competitive_programming_problems/problems.xml", true); // Replace 'my_data' with the path to your file
 	xobj.setRequestHeader("Access-Control-Allow-Origin","*");
 	xobj.send(null);  
 };
@@ -40,7 +40,7 @@ function updateSolutionFiles()
 		var xmlData = StringToXMLDom(response);
 		
 		if (xmlData) {
-			var tmp = xmlData.getElementsByTagName("book");
+			var tmp = xmlData.getElementsByTagName("Problem");
 			
 			for (var i = 0; i < tmp.length; i++) {
 				console.log(tmp[i].textContent)
