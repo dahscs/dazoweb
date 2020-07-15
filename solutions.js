@@ -43,7 +43,14 @@ function updateSolutionFiles()
 			var tmp = xmlData.getElementsByTagName("Problem");
 			
 			for (var i = 0; i < tmp.length; i++) {
-				console.log(tmp[i].textContent)
+				var n = new HTMLElement();
+				n.tagName = "li";
+				var x = new HTMLElement();
+				x.tagName = "a";
+				x.setAttribute("href","http://youtube.com");
+				x.textContent = tmp[i].textContent;
+				n.appendChild(x);
+				document.getElementById("SolutionTable").appendChild(n);
 			}
 		} 
 	});
