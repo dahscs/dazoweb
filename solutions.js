@@ -31,28 +31,36 @@ function StringToXMLDom(sXML) {
 }
 //Code found on codeproject by Matias Lopez, thanks bro
 
-function updateSolutionFiles()
+function showSolution(problem_id)
 {
 	var dir = "/competitive_programming_problems/solution_files";
 	var fileextension = ".cpp";
+	var el = document.getElementById(problem_id);
+	el.textContent = "NO SOL HAHA";
+}
+
+function updateSolutionFiles()
+{
 	loadXML(function(response) {
-		var tbData = "";
 		var xmlData = StringToXMLDom(response);
-		
+		var soltable = document.getElementById("SolutionTable");
+		while(soltable.childNodes.length>0)
+		{
+			soltable.removeChild(soltable.childNodes[0]);
+		}
 		if (xmlData) {
 			var tmp = xmlData.getElementsByTagName("Problem");
 			
 			for (var i = 0; i < tmp.length; i++) {
-				var n = new HTMLElement();
-				n.tagName = "li";
-				var x = new HTMLElement();
-				x.tagName = "a";
-				x.setAttribute("href","http://youtube.com");
-				x.textContent = tmp[i].textContent;
+				var n = document.createElement("li");
+				var x = document.createElement("a");
+				n.id = tmp[i].textContent;
+				n.textContent = tmp[i].textContent;
+				x.textContent = " solution";
+				x.setAttribute("onclick","showSolution("+x.textContent+")");
 				n.appendChild(x);
 				document.getElementById("SolutionTable").appendChild(n);
 			}
 		} 
 	});
-	document.getElementById("chicken").innerHTML = "Lmao";
 }
