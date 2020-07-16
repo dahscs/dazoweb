@@ -1,19 +1,7 @@
 #include <iostream>
-#include <fstream>
-#include <math.h>
-#include <string.h>
 #include <algorithm>
-#include <vector>
-#include <set>
-#include <queue>
-#include <map>
-
-
-#define imie(r...) "[" #r ": " << (r) << "] "
-#define debug (cout << __FUNCTION__ << "#" << __LINE__ << ": ")
 
 using namespace std;
-typedef long long ll;
 
 int main()
 {
@@ -29,7 +17,6 @@ int main()
 	sort(a,a+n);
 	sort(b,b+m);
 	int ret = abs(a[0]-b[0]);
-	debug<<imie(ret)<<endl;
 	int i=0;
 	int j=0;
 	while(i<n&&j<m)

@@ -1,0 +1,1 @@
+The constraints on the problem allowed for a very simple dynamic programming solution. Because we are gauranteed that a parent of node i has to come before i then we can just simply do an O(N) traversal backwards in the array, adding the number of children of node i to it's parent. Of course there is another simple solution of just doing a recursive traversal down the tree.

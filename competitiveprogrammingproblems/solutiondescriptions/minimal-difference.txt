@@ -1,0 +1,1 @@
+First we start by creating the prefix sum array. We can then sort this array and perform the well-known two-pointers technique on the two arrays for finding the minimum difference between two elements in the array.

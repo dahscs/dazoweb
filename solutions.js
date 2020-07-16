@@ -43,13 +43,13 @@ function showSolution(problem_id)
 	dir = "competitiveprogrammingproblems/solutionfiles/";
 	var iframe = document.createElement("iframe");
 	var pre = document.createElement("pre");
-	var em = document.createElement("code");
-	pre.setAttribute("class","prettyprint");
-	pre.setAttribute("style","background-color: #ffffff");
+	var code = document.createElement("code");
+	//code.setAttribute("class","C++");
+	//pre.setAttribute("style","background-color: #ffffff");
 	loadXML(dir+problem_id+fileextension,function(data) {
-		em.textContent = data;
+		code.textContent = data;
 	});
-	pre.appendChild(em);
+	pre.appendChild(code);
 	el.appendChild(pre);
 	for(var i=0;i<el.children.length;i++)
 	{
@@ -59,6 +59,7 @@ function showSolution(problem_id)
 			el.children[i].textContent = " hide solution";
 		}
 	}
+	hljs.highlightBlock(code);
 }
 function hideSolution(problem_id)
 {

@@ -1,0 +1,1 @@
+To create the prefix sum only takes O(N) time. Then we can do a binary search for each query leaving a total time complexity of O(N+QlogN).
