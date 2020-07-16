@@ -37,6 +37,7 @@ function showSolution(problem_id)
 	var fileextension = ".cpp";
 	var el = document.getElementById(problem_id);
 	el.textContent = "NO SOL HAHA";
+	
 }
 
 function updateSolutionFiles()
