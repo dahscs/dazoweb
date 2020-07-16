@@ -57,7 +57,7 @@ function updateSolutionFiles()
 				n.id = tmp[i].textContent;
 				n.textContent = tmp[i].textContent;
 				x.textContent = "solution";
-				x.setAttribute("onclick","showSolution("+tmp[i].textContent+")");
+				x.setAttribute("onclick","showSolution('"+tmp[i].textContent+"')");
 				n.appendChild(x);
 				document.getElementById("SolutionTable").appendChild(n);
 			}
