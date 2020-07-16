@@ -1,0 +1,1 @@
+If you need to take two slices of bread for one sandwich then the maximum number of sandwiches you can make with a slices of bread is a/2. The maximum number of sandwiches you can make with b slices of balogna is b. The answer is to print the minimum of these two numbers.

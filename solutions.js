@@ -32,14 +32,20 @@ function StringToXMLDom(sXML) {
 
 function showSolution(problem_id)
 {
-	var dir = "competitiveprogrammingproblems/solutionfiles/";
+	var dir = "competitiveprogrammingproblems/solutiondescriptions/";
 	var fileextension = ".cpp";
 	var el = document.getElementById(problem_id);
+	var p = document.createElement("p");
+	loadXML(dir+problem_id+".txt",function(text){
+		p.textContent = text;
+	});
+	el.appendChild(p);
+	dir = "competitiveprogrammingproblems/solutionfiles/";
 	var iframe = document.createElement("iframe");
 	var pre = document.createElement("pre");
 	var em = document.createElement("code");
 	pre.setAttribute("class","prettyprint");
-	//em.setAttribute("src",dir+problem_id+fileextension);
+	pre.setAttribute("style","background-color: #ffffff");
 	loadXML(dir+problem_id+fileextension,function(data) {
 		em.textContent = data;
 	});
