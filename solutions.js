@@ -1,5 +1,5 @@
 //Code found on codeproject by Matias Lopez, thanks bro
-function loadXML(callback) {
+function loadXML(file,callback) {
 	var xobj = new XMLHttpRequest();
 	xobj.overrideMimeType("application/xml");
 	xobj.onreadystatechange = function () {
@@ -9,8 +9,7 @@ function loadXML(callback) {
 				callback(xobj.responseText);
 			} 
 		};
-	xobj.open("GET", 
-	"competitiveprogrammingproblems/problems.xml", true); // Replace 'my_data' with the path to your file
+	xobj.open("GET", file, true); // Replace 'my_data' with the path to your file
 	xobj.setRequestHeader("Access-Control-Allow-Origin","*");
 	xobj.send(null);  
 };
@@ -33,23 +32,52 @@ function StringToXMLDom(sXML) {
 
 function showSolution(problem_id)
 {
-	var dir = "competitiveprogrammingproblems/solutionfiles";
+	var dir = "competitiveprogrammingproblems/solutionfiles/";
 	var fileextension = ".cpp";
 	var el = document.getElementById(problem_id);
-	var em = document.createElement("object");
-	em.setAttribute("src", dir+problem_id+fileextension);
-	el.appendChild(em);
+	var iframe = document.createElement("iframe");
+	var pre = document.createElement("pre");
+	var em = document.createElement("code");
+	pre.setAttribute("class","prettyprint");
+	//em.setAttribute("src",dir+problem_id+fileextension);
+	loadXML(dir+problem_id+fileextension,function(data) {
+		em.textContent = data;
+	});
+	pre.appendChild(em);
+	el.appendChild(pre);
+	for(var i=0;i<el.children.length;i++)
+	{
+		if(el.children[i].tagName === "A")
+		{
+			el.children[i].setAttribute("onclick","hideSolution('"+problem_id+"')");
+			el.children[i].textContent = " hide solution";
+		}
+	}
+}
+function hideSolution(problem_id)
+{
+	deleteChildren(problem_id);
+	var el = document.getElementById(problem_id);
+	el.textContent = problem_id;
+	var x = document.createElement("a");
+	x.textContent = " show solution";
+	x.setAttribute("onclick","showSolution('"+problem_id+"')");
+	el.appendChild(x);
+}
+function deleteChildren(el_id)
+{
+	var del = document.getElementById(el_id);
+	while(del.childNodes.length>0)
+	{
+		del.removeChild(del.childNodes[0]);
+	}
 }
 
 function updateSolutionFiles()
 {
-	loadXML(function(response) {
+	loadXML("competitiveprogrammingproblems/problems.xml",function(response) {
 		var xmlData = StringToXMLDom(response);
-		var soltable = document.getElementById("SolutionTable");
-		while(soltable.childNodes.length>0)
-		{
-			soltable.removeChild(soltable.childNodes[0]);
-		}
+		deleteChildren("SolutionTable");
 		if (xmlData) {
 			var tmp = xmlData.getElementsByTagName("Problem");
 			
@@ -58,7 +86,7 @@ function updateSolutionFiles()
 				var x = document.createElement("a");
 				n.id = tmp[i].textContent;
 				n.textContent = tmp[i].textContent;
-				x.textContent = " solution";
+				x.textContent = " show solution";
 				x.setAttribute("onclick","showSolution('"+tmp[i].textContent+"')");
 				n.appendChild(x);
 				document.getElementById("SolutionTable").appendChild(n);
@@ -66,3 +94,4 @@ function updateSolutionFiles()
 		} 
 	});
 }
+updateSolutionFiles();
