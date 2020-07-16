@@ -41,14 +41,10 @@ function showSolution(problem_id)
 	});
 	el.appendChild(p);
 	dir = "competitiveprogrammingproblems/solutionfiles/";
-	var iframe = document.createElement("iframe");
 	var pre = document.createElement("pre");
 	var code = document.createElement("code");
-	//code.setAttribute("class","C++");
+	//code.setAttribute("class","hlj");
 	//pre.setAttribute("style","background-color: #ffffff");
-	loadXML(dir+problem_id+fileextension,function(data) {
-		code.textContent = data;
-	});
 	pre.appendChild(code);
 	el.appendChild(pre);
 	for(var i=0;i<el.children.length;i++)
@@ -59,7 +55,10 @@ function showSolution(problem_id)
 			el.children[i].textContent = " hide solution";
 		}
 	}
-	hljs.highlightBlock(code);
+	loadXML(dir+problem_id+fileextension,function(data) {
+		code.textContent = data;
+		hljs.highlightBlock(code);
+	});
 }
 function hideSolution(problem_id)
 {
