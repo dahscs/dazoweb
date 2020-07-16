@@ -38,7 +38,8 @@ function showSolution(problem_id)
 	var el = document.getElementById(problem_id);
 	var em = document.createElement("object");
 	em.setAttribute("src", dir+problem_id+fileextension);
-	el.textContent = "NO SOL HAHA";
+	el.appendChild(em);
+	
 }
 
 function updateSolutionFiles()
