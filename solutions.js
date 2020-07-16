@@ -39,7 +39,6 @@ function showSolution(problem_id)
 	var em = document.createElement("object");
 	em.setAttribute("src", dir+problem_id+fileextension);
 	el.appendChild(em);
-	
 }
 
 function updateSolutionFiles()
