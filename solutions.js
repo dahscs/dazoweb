@@ -10,7 +10,7 @@ function loadXML(callback) {
 			} 
 		};
 	xobj.open("GET", 
-	"competitive_programming_problems/problems.xml", true); // Replace 'my_data' with the path to your file
+	"competitiveprogrammingproblems/problems.xml", true); // Replace 'my_data' with the path to your file
 	xobj.setRequestHeader("Access-Control-Allow-Origin","*");
 	xobj.send(null);  
 };
@@ -33,7 +33,7 @@ function StringToXMLDom(sXML) {
 
 function showSolution(problem_id)
 {
-	var dir = "competitive_programming_problems/solution_files";
+	var dir = "competitiveprogrammingproblems/solutionfiles";
 	var fileextension = ".cpp";
 	var el = document.getElementById(problem_id);
 	var em = document.createElement("object");
