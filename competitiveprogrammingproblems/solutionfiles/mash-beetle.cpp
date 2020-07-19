@@ -15,10 +15,7 @@ int dirx[] = {-1,0,1,0};
 int diry[] = {0,1,0,-1};
 int calc(int x,int y,int d)
 {
-	if(visited[x][y][d]==1)
-	{
-		return dp[x][y][d];
-	}
+	if(visited[x][y][d]) return dp[x][y][d];
 	int val = 0;
 	vector<int> xpath,ypath,dpath;
 	while(!visited[x][y][d])
