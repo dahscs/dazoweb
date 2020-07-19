@@ -1,5 +1,7 @@
 #include <iostream>
 
+//Author: Evan Partidas
+
 using namespace std;
 
 int main()

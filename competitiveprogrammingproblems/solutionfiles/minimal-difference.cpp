@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
 
+//Author: Evan Partidas
+
 using namespace std;
 
 int main()
