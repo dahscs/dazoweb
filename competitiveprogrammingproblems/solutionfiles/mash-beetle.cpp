@@ -18,6 +18,7 @@ int calc(int x,int y,int d)
 	if(visited[x][y][d]) return dp[x][y][d];
 	int val = 0;
 	vector<int> xpath,ypath,dpath;
+	//Traverse until we find a cycle, or we hit something we previously calculated
 	while(!visited[x][y][d])
 	{
 		xpath.push_back(x);
@@ -40,11 +41,11 @@ int calc(int x,int y,int d)
 	}
 	int cyclelen;
 	int i=xpath.size()-1;
-	if(visited[x][y][d]==1)
+	if(visited[x][y][d]==1)//This means we've found a cycle
 	{
 		cyclelen = val-dp[x][y][d];
 		for(;i>=0;i--)
-		{
+		{//Set everything inside the cycle to have the same cycle length
 			int cx = xpath[i];
 			int cy = ypath[i];
 			int cd = dpath[i];
@@ -56,7 +57,7 @@ int calc(int x,int y,int d)
 	}
 	else cyclelen = dp[x][y][d]; //visited[x][y][d]==2
 	for(;i>=0;i--)
-	{
+	{//Calculate the length for the tail of the cycle
 		int cx = xpath[i];
 		int cy = ypath[i];
 		int cd = dpath[i];
