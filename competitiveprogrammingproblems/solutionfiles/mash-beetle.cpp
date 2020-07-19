@@ -60,7 +60,7 @@ int calc(int x,int y,int d)
 		int cx = xpath[i];
 		int cy = ypath[i];
 		int cd = dpath[i];
-		visited[cx][cy][cd]=2;
+		visited[cx][cy][cd] = 2;
 		dp[cx][cy][cd] = ++cyclelen;
 	}
 	return cyclelen;
