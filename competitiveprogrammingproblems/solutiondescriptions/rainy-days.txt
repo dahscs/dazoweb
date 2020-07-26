@@ -1,0 +1,1 @@
+The probability of rain on the first day is simply equal to S. The probability on the second day would just be equal to the probability of the first day times M OR just S. In probability theory this OR means that we can just add the two together. For the first day it's just equal to S*M+S. This pattern simply continues for every day. The third day would be (S*M+S)*M+S and so on.

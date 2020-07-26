@@ -32,9 +32,18 @@ function StringToXMLDom(sXML) {
 
 function showSolution(problem_id)
 {
+
 	var dir = "competitiveprogrammingproblems/solutiondescriptions/";
+
 	var fileextension = ".cpp";
 	var el = document.getElementById(problem_id);
+	{
+		var e = el.getElementsByTagName("SELECT")[0];
+		if(e!=null)
+		{
+			fileextension = "."+e.options[e.selectedIndex].text;
+		}
+	}
 	var p = document.createElement("p");
 	loadXML(dir+problem_id+".txt",function(text){
 		p.textContent = text;
@@ -47,14 +56,9 @@ function showSolution(problem_id)
 	//pre.setAttribute("style","background-color: #ffffff");
 	pre.appendChild(code);
 	el.appendChild(pre);
-	for(var i=0;i<el.children.length;i++)
-	{
-		if(el.children[i].tagName === "A")
-		{
-			el.children[i].setAttribute("onclick","hideSolution('"+problem_id+"')");
-			el.children[i].textContent = " hide solution";
-		}
-	}
+	var href = el.getElementsByTagName("a")[0];
+	href.setAttribute("onclick","hideSolution('"+problem_id+"')");
+	href.textContent = " hide solution";
 	loadXML(dir+problem_id+fileextension,function(data) {
 		code.textContent = data;
 		hljs.highlightBlock(code);
@@ -62,13 +66,14 @@ function showSolution(problem_id)
 }
 function hideSolution(problem_id)
 {
-	deleteChildren(problem_id);
 	var el = document.getElementById(problem_id);
-	el.textContent = problem_id;
-	var x = document.createElement("a");
-	x.textContent = " show solution";
-	x.setAttribute("onclick","showSolution('"+problem_id+"')");
-	el.appendChild(x);
+	var desc = el.getElementsByTagName("p")[0];
+	var code = el.getElementsByTagName("pre")[0];
+	el.removeChild(desc);
+	el.removeChild(code);
+	var href = el.getElementsByTagName("a")[0];
+	href.setAttribute("onclick","showSolution('"+problem_id+"')");
+	href.textContent = " show solution";
 }
 function deleteChildren(el_id)
 {
@@ -76,6 +81,32 @@ function deleteChildren(el_id)
 	while(del.childNodes.length>0)
 	{
 		del.removeChild(del.childNodes[0]);
+	}
+}
+
+function addChildren(problem_id)
+{
+	var el = document.getElementById(problem_id);
+	el.textContent = problem_id;
+	var show_href = document.createElement("a");
+	show_href.textContent = " show solution";
+	show_href.setAttribute("onclick","showSolution('"+problem_id+"')");
+	el.appendChild(show_href);
+	var langs = el.getAttribute("lang").split(" ");
+	if(langs.length>1)
+	{
+		var suffixes = document.createElement("select");
+		for(var i = 0;i < langs.length;i++)
+		{
+			var suffix = document.createElement("option");
+			suffix.textContent = langs[i];
+			suffix.setAttribute("value",langs[i]);
+			suffixes.appendChild(suffix);
+		}
+		suffixes.onchange = function(){
+			hideSolution(problem_id);
+		};
+		el.appendChild(suffixes);
 	}
 }
 
@@ -89,13 +120,10 @@ function updateSolutionFiles()
 			
 			for (var i = 0; i < tmp.length; i++) {
 				var n = document.createElement("li");
-				var x = document.createElement("a");
 				n.id = tmp[i].textContent;
-				n.textContent = tmp[i].textContent;
-				x.textContent = " show solution";
-				x.setAttribute("onclick","showSolution('"+tmp[i].textContent+"')");
-				n.appendChild(x);
+				n.setAttribute("lang",tmp[i].getAttribute("lang"));
 				document.getElementById("SolutionTable").appendChild(n);
+				addChildren(n.id);
 			}
 		} 
 	});

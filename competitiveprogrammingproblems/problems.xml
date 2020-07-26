@@ -1,12 +1,14 @@
 <?xml version="1.0"?>
 <ROOT>
 	<Problems>
-		<Problem href="https://vjudge.net/problem/Gym-271004G">dazo-blues</Problem>
-		<Problem href="https://vjudge.net/problem/Gym-271004F">dazo-sandwich</Problem>
-		<Problem href="https://vjudge.net/problem/Gym-271004E">minimal-difference</Problem>
-		<Problem href="https://vjudge.net/problem/Gym-271004D">mash-beetle</Problem>
-		<Problem href="https://vjudge.net/problem/Gym-271004C">profs-disciples</Problem>
-		<Problem href="https://vjudge.net/problem/Gym-271004B">stick-it-to-em</Problem>
-		<Problem href="https://vjudge.net/problem/Gym-271004A">searching-sums</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004I" lang="cpp">rainy-days</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004H" lang="cpp java">dazo-blues-2</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004G" lang="cpp">dazo-blues</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004F" lang="cpp">dazo-sandwich</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004E" lang="cpp">minimal-difference</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004D" lang="cpp">mash-beetle</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004C" lang="cpp">profs-disciples</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004B" lang="cpp">stick-it-to-em</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004A" lang="cpp">searching-sums</Problem>
 	</Problems>
 </ROOT>
