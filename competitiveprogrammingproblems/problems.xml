@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <ROOT>
 	<Problems>
+		<Problem href="https://vjudge.net/problem/Gym-271004K" lang="cpp">range-xor</Problem>
+		<Problem href="https://vjudge.net/problem/Gym-271004J" lang="cpp">farthest-sum</Problem>
 		<Problem href="https://vjudge.net/problem/Gym-271004I" lang="cpp">rainy-days</Problem>
 		<Problem href="https://vjudge.net/problem/Gym-271004H" lang="cpp java">dazo-blues-2</Problem>
 		<Problem href="https://vjudge.net/problem/Gym-271004G" lang="cpp">dazo-blues</Problem>

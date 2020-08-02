@@ -1,0 +1,1 @@
+You can restate this problem as Find the rotation of an array such that the upper_bound of an element X on the prefix-sum of that array is maximized. This is just a brute force. We just run upper_bound on every rotation of the array and print the best answer.
