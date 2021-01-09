@@ -107,13 +107,16 @@ if(contest_id!='nil'){
 			let arr = contest_data_json.participants[key];
 			user_id_map[key] = arr[0];
 		}
-		//Initialize Array
+		//Initialize Arrays
 		let team_data = new Map();
+		let problem_solves = new Array(problem_set_size);
 		team_names.forEach(function(key){
-			team_data[key] = {solves: 0, penalty: 0, submission_penalty: new Array(problem_set_size), solved_problem: new Array(problem_set_size)};
+			team_data[key] = {solves: 0, penalty: 0, submission_attempts: new Array(problem_set_size), solved_problem: new Array(problem_set_size), is_first_solve: new Array(problem_set_size)};
 			for(let i=0;i<problem_set_size;i++){
-				team_data[key].submission_penalty[i] = 0;
+				team_data[key].submission_attempts[i] = 0;
 				team_data[key].solved_problem[i] = 0;
+				team_data[key].is_first_solve[i] = 0;
+				problem_solves[i]=0;
 			}
 		});
 		//Sorting Participants
@@ -128,12 +131,14 @@ if(contest_id!='nil'){
 				//console.log("Team: %s submitted",team_key);
 				team_data[team_key].solves += verdict;
 				if(verdict){
-					let wrong_penalty = team_data[team_key].submission_penalty[prob];
-					team_data[team_key].penalty += time + (wrong_penalty!=null?wrong_penalty:0);
+					let wrong_penalty = team_data[team_key].submission_attempts[prob];
+					team_data[team_key].penalty += time + (wrong_penalty!=null?wrong_penalty*20*60:0);
 					team_data[team_key].solved_problem[prob] = 1;
+					if(problem_solves[prob]==0) team_data[team_key].is_first_solve[prob] = 1;
+					problem_solves[prob]++;
 				}
 				else{
-					team_data[team_key].submission_penalty[prob] += 20*60;			
+					team_data[team_key].submission_attempts[prob]++;			
 				}
 				console.log("Team: %s solves: %d penalty: %d",team_key,team_data[team_key].solves,team_data[team_key].penalty);
 			}
@@ -155,8 +160,22 @@ if(contest_id!='nil'){
 				teamed_participant_list[i]+"</td><td>"+
 				team_data[teamed_participant_list[i]].solves+"</td><td>"+
 				Math.trunc(team_data[teamed_participant_list[i]].penalty/60)+"</td>";
-			for(let j=0;j<problem_set_size;j++)
-				html_text+="<td>"+team_data[teamed_participant_list[i]].solved_problem[j]+"</td>";
+			for(let j=0;j<problem_set_size;j++){
+				let solved = team_data[teamed_participant_list[i]].solved_problem[j];
+				let attempts = team_data[teamed_participant_list[i]].submission_attempts[j];
+				let cell_color = "none";
+				let display_number = 0;
+				if(solved){
+					cell_color = "#00ff00";
+					display_number=solved+attempts;
+					if(team_data[teamed_participant_list[i]].is_first_solve[j]) cell_color = "#008800";
+				}
+				else if(attempts){
+					cell_color = "#ff0000";	
+					display_number=-attempts;	
+				}
+				html_text+="<td style=\"background-color:"+cell_color+";\">"+display_number+"</td>";
+			}
 			html_text+="</tr>";
 			table_body.innerHTML+=html_text;
 		}
